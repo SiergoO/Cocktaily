@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.sdamashchuk.common.base.BaseViewModel
 import com.sdamashchuk.domain.usecase.GetCocktailDetailsUseCase
+import com.sdamashchuk.model.CocktailDetails
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -17,9 +18,9 @@ class CocktailDetailsViewModel(
 
     init {
         viewModelScope.launch {
-            getCocktailDetailsUseCase.invoke(Unit).onSuccess {
+            getCocktailDetailsUseCase.invoke(cocktailId).onSuccess {
                 intent {
-                    reduce { state.copy(title = it) }
+                    reduce { state.copy(cocktailDetails = it) }
                 }
             }
         }
@@ -37,6 +38,6 @@ class CocktailDetailsViewModel(
     }
 
     data class State(
-        val title: String = "",
+        val cocktailDetails: CocktailDetails = CocktailDetails(),
     )
 }

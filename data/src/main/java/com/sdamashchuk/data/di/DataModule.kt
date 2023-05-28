@@ -3,6 +3,7 @@ package com.sdamashchuk.data.di
 import com.sdamashchuk.data.net.HttpClientFactory
 import com.sdamashchuk.data.net.NetworkChecker
 import com.sdamashchuk.data.net.api.TheCocktailApi
+import com.sdamashchuk.data.net.mapper.CocktailDetailsMapper
 import com.sdamashchuk.data.net.mapper.CocktailItemMapper
 import com.sdamashchuk.data.repository.CocktailRepositoryImpl
 import com.sdamashchuk.domain.repository.CocktailRepository
@@ -12,9 +13,10 @@ import org.koin.dsl.module
 
 val netModule = module {
     single { HttpClientFactory().createHttpClient(context = get()) }
-    single { NetworkChecker(context = get()) }
-    single { TheCocktailApi(httpClient = get()) }
+    singleOf(::NetworkChecker)
+    singleOf(::TheCocktailApi)
     singleOf(::CocktailItemMapper)
+    singleOf(::CocktailDetailsMapper)
 }
 
 val repositoryModule = module {

@@ -37,7 +37,7 @@ private fun CocktailDetailsScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         Text(
-            text = state.value.title,
+            text = state.value.cocktailDetails.ingredient1.orEmpty(),
             color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center
         )
