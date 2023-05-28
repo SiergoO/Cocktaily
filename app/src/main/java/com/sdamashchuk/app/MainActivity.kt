@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             CocktailyTheme {
-                MainLauncher {
+                MainContainer {
                     showSplashScreen = false
                 }
             }

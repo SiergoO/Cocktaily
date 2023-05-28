@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cocktaily</string>
+
+    <!-- Screen titles -->
+    <string name="cocktail_list_screen_title">Cocktails</string>
+    <string name="cocktail_details_screen_title">Details</string>
 </resources>

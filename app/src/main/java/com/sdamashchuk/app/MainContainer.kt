@@ -6,19 +6,33 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.sdamashchuk.app.navigation.AppNavigation
 import com.sdamashchuk.app.navigation.NavDestination
+import com.sdamashchuk.common.compose.component.TopBar
 
 @Composable
-internal fun MainLauncher(
+internal fun MainContainer(
     onContainerReady: () -> Unit
 ) {
     val animatedNavController = rememberAnimatedNavController()
+    val topBarVisibilityState = rememberSaveable { (mutableStateOf(false)) }
+    val navigationIconVisibilityState = rememberSaveable { (mutableStateOf(false)) }
+    val screenTitle = rememberSaveable { (mutableStateOf("")) }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
+        topBar = {
+            TopBar(
+                title = screenTitle.value,
+                isVisible = topBarVisibilityState.value,
+                isNavigationIconVisible = navigationIconVisibilityState.value,
+                onBackPressed = { animatedNavController.navigateUp() }
+            )
+        },
         contentColor = MaterialTheme.colorScheme.background
     ) {
         Surface(
@@ -29,7 +43,10 @@ internal fun MainLauncher(
         ) {
             AppNavigation(
                 navController = animatedNavController,
-                startDestination = NavDestination.CocktailList.destination
+                startDestination = NavDestination.CocktailList.destination,
+                screenTitle,
+                topBarVisibilityState,
+                navigationIconVisibilityState
             )
         }
     }
