@@ -13,7 +13,7 @@ import org.koin.dsl.module
 val netModule = module {
     single { HttpClientFactory().createHttpClient(context = get()) }
     single { NetworkChecker(context = get()) }
-    single { TheCocktailApi(client = get()) }
+    single { TheCocktailApi(httpClient = get()) }
     singleOf(::CocktailItemMapper)
 }
 

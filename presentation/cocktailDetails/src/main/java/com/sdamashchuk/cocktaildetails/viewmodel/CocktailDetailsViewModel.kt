@@ -1,5 +1,6 @@
 package com.sdamashchuk.cocktaildetails.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.sdamashchuk.common.base.BaseViewModel
 import com.sdamashchuk.domain.usecase.GetCocktailDetailsUseCase
@@ -8,8 +9,11 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class CocktailDetailsViewModel(
-    private val getCocktailDetailsUseCase: GetCocktailDetailsUseCase
+    private val getCocktailDetailsUseCase: GetCocktailDetailsUseCase,
+    savedStateHandle: SavedStateHandle
 ) : BaseViewModel<CocktailDetailsViewModel.State, CocktailDetailsViewModel.SideEffect>(State()) {
+
+    private val cocktailId: Int = checkNotNull(savedStateHandle["cocktailId"])
 
     init {
         viewModelScope.launch {

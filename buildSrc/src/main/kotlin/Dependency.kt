@@ -64,6 +64,11 @@ object Dependency {
         const val AUTH = "io.ktor:ktor-client-auth:${VERSION}"
     }
 
+    object Coil {
+        private const val VERSION = "2.4.0"
+        const val COMPOSE = "io.coil-kt:coil-compose:${VERSION}"
+    }
+
     object Test {
         const val JUNIT = "junit:junit:4.13.2"
         const val JUNIT_KTX = "androidx.test.ext:junit-ktx:1.1.5"

@@ -31,19 +31,19 @@ class CocktailListViewModel(
         when (action) {
             is Action.CocktailClicked -> {
                 intent {
-                    postSideEffect(SideEffect.NavigateToCocktailDetails)
+                    postSideEffect(SideEffect.NavigateToCocktailDetails(action.cocktailId))
                 }
             }
         }
     }
 
     sealed class SideEffect {
-        object NavigateToCocktailDetails : SideEffect()
+        data class NavigateToCocktailDetails(val cocktailId: Int) : SideEffect()
         data class ShowError(val message: String?) : SideEffect()
     }
 
     sealed class Action {
-        object CocktailClicked : Action()
+        data class CocktailClicked(val cocktailId: Int) : Action()
     }
 
     data class State(

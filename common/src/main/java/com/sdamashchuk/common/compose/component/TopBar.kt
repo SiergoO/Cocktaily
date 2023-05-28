@@ -44,7 +44,7 @@ fun TopBar(
                     bottom = 4.dp
                 ),
                 text = title,
-                style = MaterialTheme.typography.titleLarge,
+                style = MaterialTheme.typography.headlineLarge,
                 overflow = TextOverflow.Ellipsis
             )
         },

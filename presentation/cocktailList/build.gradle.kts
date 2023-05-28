@@ -55,6 +55,8 @@ dependencies {
     implementation(Dependency.OrbitMVI.VIEWMODEL)
     implementation(Dependency.OrbitMVI.COMPOSE)
 
+    implementation(Dependency.Coil.COMPOSE)
+
     implementation(Dependency.Test.JUNIT_KTX)
     androidTestImplementation(Dependency.Test.JUNIT)
     androidTestImplementation(Dependency.Test.ESPRESSO_CORE)
