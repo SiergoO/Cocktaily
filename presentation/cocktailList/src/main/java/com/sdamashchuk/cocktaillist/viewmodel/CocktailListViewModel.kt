@@ -3,6 +3,7 @@ package com.sdamashchuk.cocktaillist.viewmodel
 import androidx.lifecycle.viewModelScope
 import com.sdamashchuk.common.base.BaseViewModel
 import com.sdamashchuk.domain.usecase.GetCocktailListUseCase
+import com.sdamashchuk.model.CocktailItem
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
@@ -16,7 +17,11 @@ class CocktailListViewModel(
         viewModelScope.launch {
             getCocktailListUseCase.invoke(Unit).onSuccess {
                 intent {
-                    reduce { state.copy(title = it) }
+                    reduce { state.copy(cocktails = it) }
+                }
+            }.onFailure {
+                intent {
+                    postSideEffect(SideEffect.ShowError(it.message))
                 }
             }
         }
@@ -42,6 +47,6 @@ class CocktailListViewModel(
     }
 
     data class State(
-        val title: String = "",
+        val cocktails: List<CocktailItem> = listOf(),
     )
 }
