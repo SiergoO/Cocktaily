@@ -23,14 +23,11 @@ import androidx.compose.ui.unit.dp
 fun TopBar(
     modifier: Modifier = Modifier,
     title: String,
-    isVisible: Boolean,
     isNavigationIconVisible: Boolean,
     onBackPressed: () -> Unit
 ) {
     TopAppBar(
-        modifier = modifier
-            .fillMaxWidth()
-            .alpha(if (isVisible) 1f else 0f),
+        modifier = modifier.fillMaxWidth(),
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
             titleContentColor = MaterialTheme.colorScheme.onBackground,

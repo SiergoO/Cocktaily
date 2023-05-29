@@ -4,7 +4,6 @@ import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -71,61 +70,57 @@ private fun CocktailListScreen(
     state: State<CocktailListViewModel.State>,
     cocktailClickedAction: (cocktailId: Int) -> Unit
 ) {
-    Column(
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 24.dp)
     ) {
-        LazyColumn(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(state.value.cocktails) { cocktail ->
-                Row(
+        items(state.value.cocktails) { cocktail ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(96.dp)
+                    .clickable {
+                        cocktailClickedAction.invoke(cocktail.id)
+                    },
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                AsyncImage(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(96.dp)
-                        .clickable {
-                            cocktailClickedAction.invoke(cocktail.id)
-                        },
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    AsyncImage(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .width(96.dp)
-                            .clip(
-                                shape = RoundedCornerShape(
-                                    topStart = 16.dp,
-                                    topEnd = 16.dp,
-                                    bottomEnd = 16.dp,
-                                    bottomStart = 0.dp
-                                )
-                            ),
-                        model = cocktail.imageUrl,
-                        placeholder = rememberVectorPainter(Icons.Default.Image),
-                        contentDescription = cocktail.name
-                    )
+                        .fillMaxHeight()
+                        .width(96.dp)
+                        .clip(
+                            shape = RoundedCornerShape(
+                                topStart = 16.dp,
+                                topEnd = 16.dp,
+                                bottomEnd = 16.dp,
+                                bottomStart = 0.dp
+                            )
+                        ),
+                    model = cocktail.imageUrl,
+                    placeholder = rememberVectorPainter(Icons.Default.Image),
+                    contentDescription = cocktail.name
+                )
 
-                    Box(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .weight(1f)
-                            .padding(start = 24.dp)
-                    ) {
-                        Text(
-                            modifier = Modifier.align(Alignment.CenterStart),
-                            text = cocktail.name,
-                            textAlign = TextAlign.Start,
-                            style = MaterialTheme.typography.titleLarge,
-                            color = MaterialTheme.colorScheme.onBackground
-                        )
-                        Divider(
-                            modifier = Modifier.align(Alignment.BottomStart)
-                        )
-                    }
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(1f)
+                        .padding(start = 24.dp)
+                ) {
+                    Text(
+                        modifier = Modifier.align(Alignment.CenterStart),
+                        text = cocktail.name,
+                        textAlign = TextAlign.Start,
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Divider(
+                        modifier = Modifier.align(Alignment.BottomStart)
+                    )
                 }
-                Spacer(modifier = Modifier.height(24.dp))
             }
+            Spacer(modifier = Modifier.height(24.dp))
         }
     }
 }

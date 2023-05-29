@@ -1,5 +1,6 @@
 package com.sdamashchuk.app
 
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -26,18 +27,19 @@ internal fun MainContainer(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopBar(
-                title = screenTitle.value,
-                isVisible = topBarVisibilityState.value,
-                isNavigationIconVisible = navigationIconVisibilityState.value,
-                onBackPressed = { animatedNavController.navigateUp() }
-            )
+            if (topBarVisibilityState.value) {
+                TopBar(
+                    title = screenTitle.value,
+                    isNavigationIconVisible = navigationIconVisibilityState.value,
+                    onBackPressed = { animatedNavController.navigateUp() }
+                )
+            }
         },
         contentColor = MaterialTheme.colorScheme.background
     ) {
         Surface(
             modifier = Modifier
-                .fillMaxSize()
+                .fillMaxHeight()
                 .padding(it),
             contentColor = MaterialTheme.colorScheme.background
         ) {

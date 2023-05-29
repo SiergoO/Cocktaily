@@ -72,8 +72,8 @@ private fun NavGraphBuilder.onCocktailDetailsScreen(
         popExitTransition = { ExitTransition.None }
     ) {
         screenTitle.value = stringResource(id = R.string.cocktail_details_screen_title)
-        topAppBarVisibilityState.value = false
-        navigationIconVisibility.value = false
+        topAppBarVisibilityState.value = true
+        navigationIconVisibility.value = true
         CocktailDetailsScreen()
     }
 }

@@ -46,9 +46,10 @@ dependencies {
     implementation(Dependency.Ktor.LOGGING)
     implementation(Dependency.Ktor.AUTH)
 
+    implementation(Dependency.Kotlin.REFLECT)
+
     implementation(Dependency.DATASTORE)
     implementation(Dependency.SERIALIZATION)
-
     implementation(Dependency.TIMBER)
 
     implementation(Dependency.Test.JUNIT_KTX)

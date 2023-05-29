@@ -18,22 +18,22 @@ object Dependency {
 
     object OrbitMVI {
         private const val VERSION = "6.0.0"
-        const val CORE = "org.orbit-mvi:orbit-core:${VERSION}"
-        const val VIEWMODEL = "org.orbit-mvi:orbit-viewmodel:${VERSION}"
-        const val COMPOSE = "org.orbit-mvi:orbit-compose:${VERSION}"
-        const val TEST = "org.orbit-mvi:orbit-test:${VERSION}"
+        const val CORE = "org.orbit-mvi:orbit-core:$VERSION"
+        const val VIEWMODEL = "org.orbit-mvi:orbit-viewmodel:$VERSION"
+        const val COMPOSE = "org.orbit-mvi:orbit-compose:$VERSION"
+        const val TEST = "org.orbit-mvi:orbit-test:$VERSION"
     }
 
     object ViewModel {
         private const val VERSION = "2.6.1"
-        const val KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:${VERSION}"
-        const val COMPOSE = "androidx.lifecycle:lifecycle-viewmodel-compose:${VERSION}"
+        const val KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:$VERSION"
+        const val COMPOSE = "androidx.lifecycle:lifecycle-viewmodel-compose:$VERSION"
     }
 
     object Coroutines {
         private const val VERSION = "1.7.1"
-        const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${VERSION}"
-        const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${VERSION}"
+        const val CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VERSION"
+        const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$VERSION"
     }
 
     object KoIn {
@@ -43,30 +43,26 @@ object Dependency {
         const val COMPOSE = "io.insert-koin:koin-androidx-compose:$VERSION"
     }
 
-    // TODO("Delete if there are no plans for using this lib/api")
-    object Room {
-        private const val VERSION = "2.5.1"
-        const val KTX = "androidx.room:room-ktx:$VERSION"
-        const val RUNTIME = "androidx.room:room-runtime:$VERSION"
-        const val COMPILER = "androidx.room:room-compiler:$VERSION"
-    }
-
-    // TODO("Delete if there are no plans for using this lib/api")
     object Ktor {
         private const val VERSION = "2.3.0"
-        const val CORE = "io.ktor:ktor-client-core:${VERSION}"
-        const val CIO = "io.ktor:ktor-client-cio:${VERSION}"
-        const val OKHTTP = "io.ktor:ktor-client-okhttp:${VERSION}"
-        const val NEGOTIATION = "io.ktor:ktor-client-content-negotiation:${VERSION}"
-        const val SERIALIZATION = "io.ktor:ktor-serialization-kotlinx-json:${VERSION}"
-        const val DARWIN = "io.ktor:ktor-client-darwin:${VERSION}"
-        const val LOGGING = "io.ktor:ktor-client-logging:${VERSION}"
-        const val AUTH = "io.ktor:ktor-client-auth:${VERSION}"
+        const val CORE = "io.ktor:ktor-client-core:$VERSION"
+        const val CIO = "io.ktor:ktor-client-cio:$VERSION"
+        const val OKHTTP = "io.ktor:ktor-client-okhttp:$VERSION"
+        const val NEGOTIATION = "io.ktor:ktor-client-content-negotiation:$VERSION"
+        const val SERIALIZATION = "io.ktor:ktor-serialization-kotlinx-json:$VERSION"
+        const val DARWIN = "io.ktor:ktor-client-darwin:$VERSION"
+        const val LOGGING = "io.ktor:ktor-client-logging:$VERSION"
+        const val AUTH = "io.ktor:ktor-client-auth:$VERSION"
+    }
+
+    object Kotlin {
+        private const val VERSION = "1.8.21"
+        const val REFLECT = "org.jetbrains.kotlin:kotlin-reflect:$VERSION"
     }
 
     object Coil {
         private const val VERSION = "2.4.0"
-        const val COMPOSE = "io.coil-kt:coil-compose:${VERSION}"
+        const val COMPOSE = "io.coil-kt:coil-compose:$VERSION"
     }
 
     object Test {
