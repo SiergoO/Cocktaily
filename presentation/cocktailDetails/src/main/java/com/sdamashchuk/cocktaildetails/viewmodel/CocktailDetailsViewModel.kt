@@ -7,6 +7,7 @@ import com.sdamashchuk.domain.usecase.GetCocktailDetailsUseCase
 import com.sdamashchuk.model.CocktailDetails
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
 class CocktailDetailsViewModel(
@@ -20,7 +21,21 @@ class CocktailDetailsViewModel(
         viewModelScope.launch {
             getCocktailDetailsUseCase.invoke(cocktailId).onSuccess {
                 intent {
-                    reduce { state.copy(cocktailDetails = it) }
+                    reduce {
+                        state.copy(
+                            cocktailDetails = it,
+                            isLoading = false
+                        )
+                    }
+                }
+            }.onFailure {
+                intent {
+                    postSideEffect(SideEffect.ShowError(it.message))
+                    reduce {
+                        state.copy(
+                            isLoading = false
+                        )
+                    }
                 }
             }
         }
@@ -31,6 +46,7 @@ class CocktailDetailsViewModel(
     }
 
     data class State(
+        val isLoading: Boolean = true,
         val cocktailDetails: CocktailDetails = CocktailDetails(),
     )
 }

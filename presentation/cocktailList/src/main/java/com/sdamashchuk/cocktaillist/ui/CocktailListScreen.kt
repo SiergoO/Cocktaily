@@ -1,6 +1,5 @@
 package com.sdamashchuk.cocktaillist.ui
 
-import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -17,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Image
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -55,18 +55,26 @@ fun CocktailListScreen(
         }
     }
 
-    CocktailListScreen(
-        context = context,
-        state = state,
-        cocktailClickedAction = { cocktailId ->
-            cocktailListViewModel.sendAction(CocktailListViewModel.Action.CocktailClicked(cocktailId))
+    if (!state.value.isLoading) {
+        CocktailListScreen(
+            state = state,
+            cocktailClickedAction = { cocktailId ->
+                cocktailListViewModel.sendAction(CocktailListViewModel.Action.CocktailClicked(cocktailId))
+            }
+        )
+    } else {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator(
+            )
         }
-    )
+    }
 }
 
 @Composable
 private fun CocktailListScreen(
-    context: Context,
     state: State<CocktailListViewModel.State>,
     cocktailClickedAction: (cocktailId: Int) -> Unit
 ) {

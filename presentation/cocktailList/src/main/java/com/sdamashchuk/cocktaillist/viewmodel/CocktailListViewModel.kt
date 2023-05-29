@@ -17,11 +17,21 @@ class CocktailListViewModel(
         viewModelScope.launch {
             getCocktailListUseCase.invoke(Unit).onSuccess {
                 intent {
-                    reduce { state.copy(cocktails = it) }
+                    reduce {
+                        state.copy(
+                            cocktails = it,
+                            isLoading = false
+                        )
+                    }
                 }
             }.onFailure {
                 intent {
                     postSideEffect(SideEffect.ShowError(it.message))
+                    reduce {
+                        state.copy(
+                            isLoading = false
+                        )
+                    }
                 }
             }
         }
@@ -47,6 +57,7 @@ class CocktailListViewModel(
     }
 
     data class State(
+        val isLoading: Boolean = true,
         val cocktails: List<CocktailItem> = listOf(),
     )
 }

@@ -20,20 +20,17 @@ internal fun MainContainer(
     onContainerReady: () -> Unit
 ) {
     val animatedNavController = rememberAnimatedNavController()
-    val topBarVisibilityState = rememberSaveable { (mutableStateOf(false)) }
     val navigationIconVisibilityState = rememberSaveable { (mutableStateOf(false)) }
     val screenTitle = rememberSaveable { (mutableStateOf("")) }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            if (topBarVisibilityState.value) {
-                TopBar(
-                    title = screenTitle.value,
-                    isNavigationIconVisible = navigationIconVisibilityState.value,
-                    onBackPressed = { animatedNavController.navigateUp() }
-                )
-            }
+            TopBar(
+                title = screenTitle.value,
+                isNavigationIconVisible = navigationIconVisibilityState.value,
+                onBackPressed = { animatedNavController.navigateUp() }
+            )
         },
         contentColor = MaterialTheme.colorScheme.background
     ) {
@@ -47,7 +44,6 @@ internal fun MainContainer(
                 navController = animatedNavController,
                 startDestination = NavDestination.CocktailList.destination,
                 screenTitle,
-                topBarVisibilityState,
                 navigationIconVisibilityState
             )
         }
