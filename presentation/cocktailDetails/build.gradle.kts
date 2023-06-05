@@ -55,6 +55,8 @@ dependencies {
     implementation(Dependency.OrbitMVI.VIEWMODEL)
     implementation(Dependency.OrbitMVI.COMPOSE)
 
+    implementation(Dependency.IMMUTABLE_COLLECTIONS)
+
     implementation(Dependency.Coil.COMPOSE)
 
     implementation(Dependency.Test.JUNIT_KTX)

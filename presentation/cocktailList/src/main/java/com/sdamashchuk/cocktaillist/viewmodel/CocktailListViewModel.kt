@@ -4,6 +4,8 @@ import androidx.lifecycle.viewModelScope
 import com.sdamashchuk.common.base.BaseViewModel
 import com.sdamashchuk.domain.usecase.GetCocktailListUseCase
 import com.sdamashchuk.model.CocktailItem
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
@@ -19,7 +21,7 @@ class CocktailListViewModel(
                 intent {
                     reduce {
                         state.copy(
-                            cocktails = it,
+                            cocktails = it.toPersistentList(),
                             isLoading = false
                         )
                     }
@@ -58,6 +60,6 @@ class CocktailListViewModel(
 
     data class State(
         val isLoading: Boolean = true,
-        val cocktails: List<CocktailItem> = listOf(),
+        val cocktails: List<CocktailItem> = persistentListOf(),
     )
 }

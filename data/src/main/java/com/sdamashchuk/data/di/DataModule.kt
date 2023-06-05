@@ -1,7 +1,6 @@
 package com.sdamashchuk.data.di
 
 import com.sdamashchuk.data.net.HttpClientFactory
-import com.sdamashchuk.data.net.NetworkChecker
 import com.sdamashchuk.data.net.api.TheCocktailApi
 import com.sdamashchuk.data.net.mapper.CocktailDetailsMapper
 import com.sdamashchuk.data.net.mapper.CocktailItemMapper
@@ -13,7 +12,6 @@ import org.koin.dsl.module
 
 val netModule = module {
     single { HttpClientFactory().createHttpClient(context = get()) }
-    singleOf(::NetworkChecker)
     singleOf(::TheCocktailApi)
     singleOf(::CocktailItemMapper)
     singleOf(::CocktailDetailsMapper)

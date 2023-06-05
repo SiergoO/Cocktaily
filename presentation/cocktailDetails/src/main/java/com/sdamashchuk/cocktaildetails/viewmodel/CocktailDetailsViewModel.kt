@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.sdamashchuk.common.base.BaseViewModel
 import com.sdamashchuk.domain.usecase.GetCocktailDetailsUseCase
 import com.sdamashchuk.model.CocktailDetails
+import kotlinx.collections.immutable.persistentMapOf
+import kotlinx.collections.immutable.toPersistentMap
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
@@ -23,7 +25,9 @@ class CocktailDetailsViewModel(
                 intent {
                     reduce {
                         state.copy(
-                            cocktailDetails = it,
+                            cocktailDetails = it.copy(
+                                ingredients = it.ingredients.toPersistentMap()
+                            ),
                             isLoading = false
                         )
                     }
